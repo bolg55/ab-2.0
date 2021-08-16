@@ -2,6 +2,7 @@ import styles from "../styles/Dashboard.module.css";
 import Layout from "../components/Layout";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
+import Home from "../components/Home";
 
 const Dashboard = () => {
   return (
@@ -9,7 +10,7 @@ const Dashboard = () => {
       <Topbar />
       <div className={styles.container}>
         <Sidebar />
-        <div className={styles.other}>Wait and See</div>
+        <Home />
       </div>
     </Layout>
   );

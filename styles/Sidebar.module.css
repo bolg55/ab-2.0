@@ -1,9 +1,9 @@
 .sidebar {
   flex: 1;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 80px);
   background: rgba(12, 31, 49);
   position: sticky;
-  top: 60px;
+  top: 80px;
 }
 
 .sidebarWrapper {
@@ -32,14 +32,19 @@
   display: flex;
   align-items: center;
   border-radius: 0.25rem;
+  transition: all 0.5s ease;
 }
 
 .icon {
   margin-right: 5px;
 }
 
+.sidebarListItem:hover {
+  transform: scale(1.05);
+}
+
 .sidebarListItem:hover,
-.active {
+.sidebarListItem:active {
   background: rgb(44, 204, 102, 0.2);
   color: #fff;
 }

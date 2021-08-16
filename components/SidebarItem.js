@@ -15,9 +15,7 @@ const SidebarItem = () => {
               <li
                 key={item.id}
                 onClick={() => setIsActive(!isActive)}
-                className={`${styles.sidebarListItem} ${
-                  isActive ? `${styles.active} ` : ""
-                }`}>
+                className={styles.sidebarListItem}>
                 {item.listIcon}
                 {item.itemName}
               </li>
