@@ -10,7 +10,7 @@ const Topbar = () => {
           <span>
             <img
               className={styles.logo}
-              src='/ab_2021_header.png'
+              src='/ab_21.png'
               alt='Action Backers Logo'
             />
           </span>
@@ -32,6 +32,9 @@ const Topbar = () => {
             src='/KellenAvatar.png'
             alt='Profile Avatar'
           />
+          <div className={styles.topbarIconContainer}>
+            <p className={styles.topLogout}>Logout</p>
+          </div>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ const Dashboard = () => {
       <Topbar />
       <div className={styles.container}>
         <Sidebar />
-        <div className={styles.other}>Other Stuff</div>
+        <div className={styles.other}>Wait and See</div>
       </div>
     </Layout>
   );
