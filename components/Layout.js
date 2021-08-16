@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Footer from "./Footer";
+import { useRouter } from "next/router";
 
 export default function Layout({
   title,
@@ -9,6 +10,7 @@ export default function Layout({
   previewImage,
   children,
 }) {
+  const router = useRouter();
   return (
     <div>
       <Head>
@@ -32,7 +34,7 @@ export default function Layout({
       </Head>
 
       {children}
-      <Footer />
+      {router.pathname === "/dashboard" ? "" : <Footer />}
     </div>
   );
 }

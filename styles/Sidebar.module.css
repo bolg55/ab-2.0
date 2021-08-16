@@ -1,14 +1,25 @@
 .sidebar {
   flex: 1;
-  height: calc(100vh - 80px);
+  height: 100vh;
   background: rgba(12, 31, 49);
   position: sticky;
   top: 80px;
+  z-index: 5;
+  max-width: fit-content;
 }
 
 .sidebarWrapper {
-  padding: 20px;
-  color: rgb(255, 255, 255, 0.5);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 265px;
+  object-fit: contain;
+  margin: 0 0 5.5rem;
+  transform: translateX(-12px);
 }
 
 .sidebarMenu {
@@ -16,27 +27,41 @@
 }
 
 .sidebarTitle {
-  font-size: 1.2rem;
-  padding-left: 5px;
+  font-size: 0.8rem;
   color: rgb(44, 204, 102);
 }
 
 .sidebarList {
   list-style: none;
-  padding: 5px;
+  padding: 5px 0;
+}
+
+.sidebarMenu::after {
+  content: "";
+  display: flex;
+  padding-bottom: 0.2rem;
+  border-top: 2px solid rgba(85, 85, 85, 0.5);
+}
+
+.sidebarMenu:first-of-type::before {
+  content: "";
+  display: flex;
+  border-top: 2px solid rgba(85, 85, 85, 0.5);
+  margin-bottom: 0.8rem;
 }
 
 .sidebarListItem {
-  padding: 5px;
+  padding: 5px 0;
   cursor: pointer;
   display: flex;
   align-items: center;
   border-radius: 0.25rem;
   transition: all 0.5s ease;
+  color: rgb(255, 255, 255, 0.5);
 }
 
 .icon {
-  margin-right: 5px;
+  margin-right: 15px;
 }
 
 .sidebarListItem:hover {

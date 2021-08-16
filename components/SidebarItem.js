@@ -5,6 +5,13 @@ import { useState } from "react";
 const SidebarItem = () => {
   const [isActive, setIsActive] = useState(false);
 
+  // for (let i = 0; i < dashboardItems.length; i++) {
+  //   for (let j = 0; j < dashboardItems[i].listItem.length; j++) {
+  //     const dbId = dashboardItems[i].listItem[j].id;
+  //     console.log(dbId);
+  //   }
+  // }
+
   return (
     <>
       {dashboardItems.map((item) => (
