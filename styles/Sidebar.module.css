@@ -51,12 +51,12 @@
 }
 
 .sidebarListItem {
-  padding: 5px 0;
+  padding: 5px;
   cursor: pointer;
   display: flex;
   align-items: center;
   border-radius: 0.25rem;
-  transition: all 0.5s ease;
+  transition: all 0.4s ease;
   color: rgb(255, 255, 255, 0.5);
 }
 
