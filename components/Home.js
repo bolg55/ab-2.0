@@ -1,9 +1,11 @@
-import styles from "../styles/Home.module.css";
-import FeaturedInfo from "./FeaturedInfo";
-import Topbar from "./Topbar";
+import styles from '../styles/Home.module.css';
+import FeaturedInfo from './FeaturedInfo';
+import Topbar from './Topbar';
+import Chart from './Chart';
+import { data } from '../constants/dummydata';
 
 const Home = () => {
-  let userName = "notHotdog";
+  let userName = 'notHotdog';
   const logins = 1;
 
   return (
@@ -16,6 +18,7 @@ const Home = () => {
       <div>
         <FeaturedInfo />
       </div>
+      <Chart title='Profit' data={data} />
     </div>
   );
 };
