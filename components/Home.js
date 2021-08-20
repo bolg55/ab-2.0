@@ -18,7 +18,7 @@ const Home = () => {
       <div>
         <FeaturedInfo />
       </div>
-      <Chart title='Profit' data={data} />
+      <Chart title='Monthly Profit' data={data} />
     </div>
   );
 };
