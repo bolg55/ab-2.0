@@ -18,7 +18,18 @@ const Home = () => {
       <div>
         <FeaturedInfo />
       </div>
-      <Chart title='Monthly Profit' data={data} />
+
+      <Chart
+        title='Profit'
+        data={data}
+        dataKeyX='month'
+        dataKey='overall'
+        listKey1='football'
+        listKey2='basketball'
+        listKey3='baseball'
+        listKey4='hockey'
+        chart2
+      />
     </div>
   );
 };

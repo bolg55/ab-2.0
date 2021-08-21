@@ -1,11 +1,12 @@
 .sidebar {
   flex: 1;
   height: 100vh;
-  background: rgba(12, 31, 49);
+
   position: sticky;
   top: 80px;
   z-index: 5;
   max-width: fit-content;
+  background-image: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
 }
 
 .sidebarWrapper {
@@ -37,14 +38,14 @@
 }
 
 .sidebarMenu::after {
-  content: "";
+  content: '';
   display: flex;
   padding-bottom: 0.2rem;
   border-top: 2px solid rgba(85, 85, 85, 0.5);
 }
 
 .sidebarMenu:first-of-type::before {
-  content: "";
+  content: '';
   display: flex;
   border-top: 2px solid rgba(85, 85, 85, 0.5);
   margin-bottom: 0.8rem;
@@ -57,7 +58,8 @@
   align-items: center;
   border-radius: 0.25rem;
   transition: all 0.4s ease;
-  color: rgb(255, 255, 255, 0.5);
+  color: #fff;
+  /* color: rgb(255, 255, 255, 0.5); */
 }
 
 .icon {
@@ -71,5 +73,4 @@
 .sidebarListItem:hover,
 .sidebarListItem:active {
   background: rgb(44, 204, 102, 0.2);
-  color: #fff;
 }

@@ -1,6 +1,6 @@
 .container {
   flex: 4;
-  background: #fff;
+  background: rgb(255, 255, 255);
 }
 
 .greeting {

@@ -9,35 +9,62 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+import { FiSun, FiMoon } from 'react-icons/fi';
+import { useState } from 'react';
 
-const Chart = ({ title, data }) => {
+const Chart = ({
+  title,
+  data,
+  dataKey,
+  dataKeyX,
+  listKey1,
+  listKey2,
+  listKey3,
+  listKey4,
+}) => {
+  const [chartToggle, setChartToggle] = useState(false);
+
   return (
-    <div className={styles.chart}>
-      <h3 className={styles.chartTitle}>{title}</h3>
-      <ResponsiveContainer width='100%' aspect={2 / 1}>
+    <div className={chartToggle ? `${styles.chart2}` : `${styles.chart}`}>
+      <div className={styles.chartHeader}>
+        <h3
+          className={
+            chartToggle ? `${styles.chartTitle2}` : `${styles.chartTitle}`
+          }>
+          {title}
+        </h3>
+        <button
+          title={!chartToggle ? 'Switch to light mode' : 'Switch to dark mode'}
+          className={chartToggle ? `${styles.btn2}` : `${styles.btn}`}
+          onClick={() => setChartToggle(!chartToggle)}>
+          {!chartToggle ? <FiSun /> : <FiMoon />}
+        </button>
+      </div>
+
+      <ResponsiveContainer aspect={3 / 1}>
         <LineChart
           data={data}
           margin={{
             top: 5,
-            right: 30,
-            left: 20,
+            right: 50,
+            left: 0,
             bottom: 5,
           }}>
-          <CartesianGrid strokeDasharray='3 3' />
-          <XAxis dataKey='month' />
-          <YAxis />
+          <CartesianGrid strokeDasharray='3 3' stroke='#555' />
+          <XAxis dataKey={dataKeyX} stroke={chartToggle ? '#555' : '#fff'} />
+          <YAxis stroke={chartToggle ? '#555' : '#fff'} />
           <Tooltip />
           <Legend />
           <Line
             type='monotone'
-            dataKey='overall'
-            stroke='#8884d8'
-            activeDot={{ r: 6 }}
+            dataKey={dataKey}
+            stroke='#2BD4B2'
+            activeDot={{ r: 8 }}
           />
-          <Line type='monotone' dataKey='football' stroke='#82ca9d' />
-          <Line type='monotone' dataKey='basketball' stroke='#d42b4d' />
-          <Line type='monotone' dataKey='baseball' stroke='#2BD4B2' />
-          <Line type='monotone' dataKey='hockey' stroke='#2b88d4' />
+          <Line type='monotone' dataKey={listKey1} stroke='#82ca9d' />
+          <Line type='monotone' dataKey={listKey2} stroke='#d42b4d' />
+          <Line type='monotone' dataKey={listKey3} stroke='#8884d8' />
+          <Line type='monotone' dataKey={listKey4} stroke='#2b88d4' />
         </LineChart>
       </ResponsiveContainer>
     </div>
