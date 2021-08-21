@@ -24,11 +24,13 @@
 }
 
 .btn {
+  display: flex;
   background: transparent;
   border: none;
-  color: #fff;
+  color: rgb(255, 255, 255, 0.75);
   cursor: pointer;
   font-size: 1.5rem;
+  align-items: center;
 }
 
 /* Light Chart Style */
@@ -49,9 +51,24 @@
 }
 
 .btn2 {
+  display: flex;
   background: transparent;
   border: none;
-  color: #292456;
+  color: rgb(85, 85, 85, 0.75);
   cursor: pointer;
   font-size: 1.5rem;
+  align-items: center;
+}
+
+/* ********* */
+/* ********* */
+
+.legendToggle {
+  font-size: 0.8rem;
+  margin-right: 10px;
+}
+.toggleContainer {
+  display: flex;
+  justify-content: flex-end;
+  transform: translateY(-10px);
 }
