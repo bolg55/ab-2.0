@@ -1,6 +1,7 @@
-import { dashboardItems } from "../constants/dashboardItems";
-import styles from "../styles/Sidebar.module.css";
-import { useState } from "react";
+import { dashboardItems } from '../constants/dashboardItems';
+import styles from '../styles/Sidebar.module.css';
+import { useState } from 'react';
+import Link from 'next/link';
 
 const SidebarItem = () => {
   const [isActive, setIsActive] = useState(false);
@@ -19,13 +20,14 @@ const SidebarItem = () => {
           <h3 className={styles.sidebarTitle}>{item.title}</h3>
           <ul className={styles.sidebarList}>
             {item.listItem.map((item) => (
-              <li
-                key={item.id}
-                onClick={() => setIsActive(!isActive)}
-                className={styles.sidebarListItem}>
-                {item.listIcon}
-                {item.itemName}
-              </li>
+              <Link key={item.id} href={item.link}>
+                <a>
+                  <li className={styles.sidebarListItem}>
+                    {item.listIcon}
+                    {item.itemName}
+                  </li>
+                </a>
+              </Link>
             ))}
           </ul>
         </div>

@@ -1,7 +1,7 @@
 import styles from '../styles/Chart.module.css';
 import {
-  LineChart,
-  Line,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -13,30 +13,7 @@ import { FiSun, FiMoon } from 'react-icons/fi';
 import { BsToggleOn, BsToggleOff } from 'react-icons/bs';
 import { useState } from 'react';
 
-const userSports = [
-  {
-    id: 1,
-    sport: 'football',
-    color: '#82ca9d',
-  },
-  {
-    id: 2,
-    sport: 'hockey',
-    color: '#d42b4d',
-  },
-  {
-    id: 3,
-    sport: 'baseball',
-    color: '#8884d8',
-  },
-  {
-    id: 4,
-    sport: 'basketball',
-    color: '#F28118',
-  },
-];
-
-const Chart = ({ title, data, dataKey, dataKeyX }) => {
+const Chart = ({ title, data, dataKey, dataKeyX, userPrefs }) => {
   const [chartToggle, setChartToggle] = useState(false);
   const [toggleLegend, setToggleLegend] = useState(false);
 
@@ -59,7 +36,7 @@ const Chart = ({ title, data, dataKey, dataKeyX }) => {
       </div>
 
       <ResponsiveContainer aspect={3 / 1}>
-        <LineChart
+        <AreaChart
           data={data}
           margin={{
             top: 5,
@@ -67,29 +44,28 @@ const Chart = ({ title, data, dataKey, dataKeyX }) => {
             left: 0,
             bottom: 5,
           }}>
-          <CartesianGrid strokeDasharray='3 3' stroke='#555' />
+          <CartesianGrid
+            strokeDasharray='3 3'
+            stroke={chartToggle ? '#c1c1c1' : '#555'}
+          />
           <XAxis dataKey={dataKeyX} stroke={chartToggle ? '#555' : '#fff'} />
           <YAxis stroke={chartToggle ? '#555' : '#fff'} />
           <Tooltip className={styles.toolTip} />
 
           {toggleLegend && <Legend />}
 
-          <Line
-            type='monotone'
-            dataKey={dataKey}
-            stroke='#2BD4B2'
-            activeDot={{ r: 8 }}
-          />
-
-          {userSports.map((sport) => (
-            <Line
-              key={sport.id}
+          {userPrefs.map((pref) => (
+            <Area
+              key={pref.id}
+              stackId='1'
               type='monotone'
-              dataKey={sport.sport}
-              stroke={sport.color}
+              dataKey={pref.sport}
+              stroke={pref.color}
+              fill={pref.color}
+              activeDot={{ r: 6 }}
             />
           ))}
-        </LineChart>
+        </AreaChart>
       </ResponsiveContainer>
       <div className={styles.toggleContainer}>
         <button

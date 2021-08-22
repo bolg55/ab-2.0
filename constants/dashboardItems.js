@@ -10,96 +10,96 @@ import {
   AccountBalanceWallet,
   TrendingUp,
   Computer,
-} from "@material-ui/icons";
-import styles from "../styles/Sidebar.module.css";
+} from '@material-ui/icons';
+import styles from '../styles/Sidebar.module.css';
 
 export const dashboardItems = [
   {
     id: 1,
-    title: "Dashboard",
+    title: 'Dashboard',
     listItem: [
       {
         id: 1,
-        link: "/",
-        itemName: "Home",
+        link: '/dashboard',
+        itemName: 'Home',
         listIcon: <LineStyle className={styles.icon} />,
       },
       {
         id: 2,
-        link: "/",
-        itemName: "Recent Bets",
+        link: '/allbets',
+        itemName: 'All Bets',
         listIcon: <List className={styles.icon} />,
       },
       {
         id: 3,
-        link: "/",
-        itemName: "Profit",
+        link: '/dashboard',
+        itemName: 'Profit',
         listIcon: <AttachMoney className={styles.icon} />,
       },
       {
         id: 4,
-        link: "/",
-        itemName: "Bet Tracker",
+        link: '/dashboard',
+        itemName: 'Bet Tracker',
         listIcon: <Timeline className={styles.icon} />,
       },
     ],
   },
   {
     id: 2,
-    title: "Sports Betting",
+    title: 'Sports Betting',
     listItem: [
       {
         id: 5,
-        link: "/",
-        itemName: "Football",
+        link: '/models',
+        itemName: 'Football',
         listIcon: <SportsFootball className={styles.icon} />,
       },
       {
         id: 6,
-        link: "/",
-        itemName: "Basketball",
+        link: '/models',
+        itemName: 'Basketball',
         listIcon: <SportsBasketball className={styles.icon} />,
       },
       {
         id: 7,
-        link: "/",
-        itemName: "Hockey",
+        link: '/models',
+        itemName: 'Hockey',
         listIcon: <SportsHockey className={styles.icon} />,
       },
       {
         id: 8,
-        link: "/",
-        itemName: "Baseball",
+        link: '/models',
+        itemName: 'Baseball',
         listIcon: <SportsBaseball className={styles.icon} />,
       },
     ],
   },
   {
     id: 3,
-    title: "Video Courses",
+    title: 'Video Courses',
     listItem: [
       {
         id: 9,
-        link: "/",
-        itemName: "Fundamentals",
+        link: '#',
+        itemName: 'Fundamentals',
         listIcon: <List className={styles.icon} />,
       },
       {
         id: 10,
-        link: "/",
-        itemName: "Bankroll Management",
+        link: '#',
+        itemName: 'Bankroll Management',
         listIcon: <AccountBalanceWallet className={styles.icon} />,
       },
       {
         id: 11,
-        link: "/",
-        itemName: "Profit Without a Model",
+        link: '#',
+        itemName: 'Profit Without a Model',
         listIcon: <TrendingUp className={styles.icon} />,
       },
       {
         id: 12,
-        link: "/",
-        itemName: "Building a Model",
+        link: '#',
+        itemName: 'Building a Model',
         listIcon: <Computer className={styles.icon} />,
       },
     ],

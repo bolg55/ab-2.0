@@ -71,6 +71,6 @@
 }
 
 .sidebarListItem:hover,
-.sidebarListItem:active {
+.active {
   background: rgb(44, 204, 102, 0.2);
 }

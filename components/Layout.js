@@ -1,6 +1,6 @@
-import Head from "next/head";
-import Footer from "./Footer";
-import { useRouter } from "next/router";
+import Head from 'next/head';
+import Footer from './Footer';
+import { useRouter } from 'next/router';
 
 export default function Layout({
   title,
@@ -34,18 +34,18 @@ export default function Layout({
       </Head>
 
       {children}
-      {router.pathname === "/dashboard" ? "" : <Footer />}
+      {router.pathname === '/' ? <Footer /> : ''}
     </div>
   );
 }
 
 Layout.defaultProps = {
-  title: "Action Backers 2.0",
+  title: 'Action Backers 2.0',
   description:
-    "The new home of Action Backers. Become a profitable sports bettor today. Built by Kellen Bolger",
+    'The new home of Action Backers. Become a profitable sports bettor today. Built by Kellen Bolger',
   keywords:
-    "sports betting, bet on sports, nhl betting, nfl betting, nba betting, mlb betting, make money betting on sports",
+    'sports betting, bet on sports, nhl betting, nfl betting, nba betting, mlb betting, make money betting on sports',
   previewImage:
-    "https://res.cloudinary.com/dxghtqpao/image/upload/v1626978460/largeKBShort_dmz3d3.png",
-  currentURL: "https://www.actionbackers.com",
+    'https://res.cloudinary.com/dxghtqpao/image/upload/v1626978460/largeKBShort_dmz3d3.png',
+  currentURL: 'https://www.actionbackers.com',
 };

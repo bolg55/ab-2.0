@@ -2,7 +2,8 @@ import styles from '../styles/Home.module.css';
 import FeaturedInfo from './FeaturedInfo';
 import Topbar from './Topbar';
 import Chart from './Chart';
-import { data } from '../constants/dummydata';
+import { data, userSports } from '../constants/dummydata';
+import WidgetLg from './WidgetLg';
 
 const Home = () => {
   let userName = 'notHotdog';
@@ -19,7 +20,16 @@ const Home = () => {
         <FeaturedInfo />
       </div>
 
-      <Chart title='Profit' data={data} dataKeyX='month' dataKey='overall' />
+      <Chart
+        title='Profit'
+        data={data}
+        userPrefs={userSports}
+        dataKeyX='month'
+        dataKey='overall'
+      />
+      <div className={styles.widgetContainer}>
+        <WidgetLg />
+      </div>
     </div>
   );
 };

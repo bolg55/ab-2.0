@@ -5,7 +5,7 @@ export const data = [
     football: 4000,
     basketball: 2400,
     baseball: 0,
-    hockey: 2200,
+    hockey: 2600,
   },
   {
     month: 'Feb',
@@ -94,5 +94,28 @@ export const data = [
     basketball: 2100,
     baseball: 0,
     hockey: 2900,
+  },
+];
+
+export const userSports = [
+  {
+    id: 1,
+    sport: 'football',
+    color: '#82ca9d',
+  },
+  {
+    id: 2,
+    sport: 'hockey',
+    color: '#d42b4d',
+  },
+  {
+    id: 3,
+    sport: 'baseball',
+    color: '#8884d8',
+  },
+  {
+    id: 4,
+    sport: 'basketball',
+    color: '#F28118',
   },
 ];

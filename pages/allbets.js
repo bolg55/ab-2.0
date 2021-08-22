@@ -1,17 +1,17 @@
 import styles from '../styles/Dashboard.module.css';
 import Layout from '../components/Layout';
 import Sidebar from '../components/Sidebar';
-import Home from '../components/Home';
+import AllBets from '../components/AllBets';
 
-const Dashboard = () => {
+const allbets = () => {
   return (
-    <Layout currentURL='http://localhost:3000/dashboard'>
+    <Layout currentURL='http://localhost:3000/models'>
       <div className={styles.container}>
         <Sidebar />
-        <Home />
+        <AllBets />
       </div>
     </Layout>
   );
 };
 
-export default Dashboard;
+export default allbets;

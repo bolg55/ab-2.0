@@ -6,10 +6,14 @@
 .greeting {
   color: rgba(85, 85, 85, 0.75);
   font-weight: 400;
-  margin: 1rem;
+  margin: 1rem 1.25rem;
   font-size: 2rem;
 }
 
 .userName {
   font-weight: bold;
+}
+
+.widgetContainer {
+  display: flex;
 }

@@ -1,0 +1,67 @@
+.container {
+  flex: 4;
+  background: rgb(255, 255, 255);
+}
+
+.allBetsLg {
+  margin: 1rem 1.25rem;
+  padding: 1.25rem;
+  box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.75);
+  border-radius: 0.25rem;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.allBetsTitle {
+  color: rgb(85, 85, 85, 0.85);
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+.allBetsLink {
+  color: rgba(47, 42, 98, 0.5);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.allBetsLink:hover {
+  color: rgba(47, 42, 98);
+}
+
+.allBetsTable {
+  width: 100%;
+  border-spacing: 10px;
+}
+
+.allBetsTh {
+  font-weight: 500;
+  color: rgb(85, 85, 85, 0.85);
+}
+
+.allBetsTr {
+  text-align: left;
+  color: rgb(85, 85, 85, 0.75);
+}
+
+.outcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lose {
+  color: red;
+}
+
+.win {
+  color: green;
+}
+
+.refund {
+  color: #dfba00;
+}
