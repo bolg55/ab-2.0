@@ -2,7 +2,7 @@ import styles from '../styles/AllBets.module.css';
 import { Cancel, CheckCircle, SwapHorizontalCircle } from '@material-ui/icons';
 import Topbar from './Topbar';
 
-const AllBets = () => {
+const AllBets = ({ data }) => {
   return (
     <div className={styles.container}>
       <Topbar />
@@ -23,18 +23,24 @@ const AllBets = () => {
             <th className={styles.allBetsTh}>Net Profit</th>
           </tr>
 
-          <tr className={styles.allBetsTr}>
-            <td className={styles.displayLeft}>June 23, 2021</td>
-            <td className={styles.displayLeft}>Baseball</td>
-            <td>Moneyline</td>
-            <td>Toronto Blue Jays</td>
-            <td>$100</td>
-            <td>-105</td>
-            <td className={styles.outcome}>
-              <Cancel className={styles.lose} />
-            </td>
-            <td>-$100</td>
-          </tr>
+          {data.map((sport) => (
+            <tr key={sport.id} className={styles.allBetsTr}>
+              <td className={styles.displayLeft}>{sport.date}</td>
+              <td className={styles.displayLeft}>{sport.sport}</td>
+              <td>{sport.wager_type}</td>
+              <td>{sport.wager_info}</td>
+              <td>{sport.wager_amt}</td>
+              <td>{sport.odds}</td>
+              <td className={`${styles[`${sport.outcome}`]} ${styles.outcome}`}>
+                {sport.outcome}
+              </td>
+              <td>
+                {`${sport.outcome}` === 'lose'
+                  ? -`${sport.wager_amt}`
+                  : sport.odds * sport.wager_amt - sport.wager_amt}
+              </td>
+            </tr>
+          ))}
         </table>
       </div>
     </div>
