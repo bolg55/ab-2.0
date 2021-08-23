@@ -1,4 +1,4 @@
-export const data = [
+export const sportData = [
   {
     month: 'Jan',
     overall: 8800,

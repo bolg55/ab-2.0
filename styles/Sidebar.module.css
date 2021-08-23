@@ -3,7 +3,7 @@
   height: 100vh;
 
   position: sticky;
-  top: 80px;
+  /* top: 80px; */
   z-index: 5;
   max-width: fit-content;
   background-image: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
@@ -11,9 +11,9 @@
 
 .sidebarWrapper {
   padding: 1.25rem;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; */
 }
 
 .logo {
@@ -53,6 +53,7 @@
 
 .sidebarListItem {
   padding: 5px;
+  margin: 5px 0;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -63,7 +64,7 @@
 }
 
 .icon {
-  margin-right: 15px;
+  margin-right: 1rem;
 }
 
 .sidebarListItem:hover {

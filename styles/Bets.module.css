@@ -1,0 +1,129 @@
+.container {
+  flex: 4;
+}
+
+.tableContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 1.25rem;
+  padding: 1.25rem;
+  box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.75);
+  border-radius: 0.25rem;
+  background: #fff;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search {
+  color: rgba(85, 85, 85, 0.75);
+  border-color: rgb(85, 85, 85, 0.15);
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  font-size: 0.8rem;
+  width: 35rem;
+}
+
+.search:focus {
+  outline: none;
+}
+
+.tableTitle {
+  color: rgba(85, 85, 85, 0.75);
+  font-weight: 600;
+  margin: 1rem 1.25rem 0;
+  font-size: 2rem;
+}
+
+.tableTitleSm {
+  color: rgb(85, 85, 85, 0.85);
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+.allBetsLink {
+  color: rgba(47, 42, 98, 0.5);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.allBetsLink:hover {
+  color: rgba(47, 42, 98);
+}
+
+.allBetsTable {
+  width: 100%;
+  border-spacing: 0.625rem;
+}
+
+.allBetsRowHeader {
+  font-weight: 500;
+  color: rgb(85, 85, 85, 0.85);
+}
+
+.allBetsTh {
+  text-align: center;
+}
+
+.allBetsTr {
+  color: rgb(85, 85, 85, 0.75);
+}
+
+/* *********
+Styling the Results pill 
+ **********
+*/
+
+.outcome {
+  padding: 0.125rem;
+  border: none;
+  border-radius: 1.25rem;
+  text-align: center;
+}
+
+.lose {
+  color: #d95087;
+  background: #fff0f1;
+}
+
+.win {
+  color: #3bb077;
+  background: #e5faf2;
+}
+
+.push {
+  color: #2a7ade;
+  background: #e5faf2;
+}
+
+/* UTILITIES */
+
+.displayRight {
+  text-align: right;
+}
+
+.displayLeft {
+  text-align: left;
+}
+
+.displayCenter {
+  text-align: center;
+}
+
+.csvDL {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #555;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+}
+
+.icon {
+  color: rgba(47, 42, 98, 0.75);
+  margin-left: 0.25rem;
+}

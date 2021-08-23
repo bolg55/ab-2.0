@@ -1,16 +1,16 @@
-import styles from '../styles/Dashboard.module.css';
+import styles from '../styles/AddBets.module.css';
 import Layout from '../components/Layout';
 import Sidebar from '../components/Sidebar';
-import AllBets from '../components/AllBets';
+import AddBets from '../components/AddBets';
 import { API_URL } from '../config';
 import axios from 'axios';
 
-const allbets = ({ betData }) => {
+const addbets = ({ data }) => {
   return (
-    <Layout currentURL='http://localhost:3000/models'>
-      <div className={styles.container}>
+    <Layout currentURL='http://localhost:3000/addbets'>
+      <div className={styles.outerWrapper}>
         <Sidebar />
-        <AllBets betData={betData} />
+        <AddBets data={data} title='Add bet' />
       </div>
     </Layout>
   );
@@ -18,11 +18,11 @@ const allbets = ({ betData }) => {
 
 export const getServerSideProps = async () => {
   const res = await axios.get(`${API_URL}/bets?_sort=date:DESC`);
-  const betData = await res.data;
+  const data = await res.data;
 
   return {
-    props: { betData },
+    props: { data },
   };
 };
 
-export default allbets;
+export default addbets;

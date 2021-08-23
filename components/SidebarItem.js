@@ -1,17 +1,10 @@
 import { dashboardItems } from '../constants/dashboardItems';
 import styles from '../styles/Sidebar.module.css';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 const SidebarItem = () => {
-  const [isActive, setIsActive] = useState(false);
-
-  // for (let i = 0; i < dashboardItems.length; i++) {
-  //   for (let j = 0; j < dashboardItems[i].listItem.length; j++) {
-  //     const dbId = dashboardItems[i].listItem[j].id;
-  //     console.log(dbId);
-  //   }
-  // }
+  const router = useRouter();
 
   return (
     <>
@@ -21,8 +14,11 @@ const SidebarItem = () => {
           <ul className={styles.sidebarList}>
             {item.listItem.map((item) => (
               <Link key={item.id} href={item.link}>
-                <a>
-                  <li className={styles.sidebarListItem}>
+                <a
+                  className={`${styles.sidebarListItem} ${
+                    router.pathname === item.link && ` ${styles.active}`
+                  }`}>
+                  <li>
                     {item.listIcon}
                     {item.itemName}
                   </li>
