@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import styles from "../styles/Topbar.module.css";
-import { NotificationsNone, Language, Settings } from "@material-ui/icons";
+import styles from '../styles/Topbar.module.css';
+import { NotificationsNone, Language, Settings } from '@material-ui/icons';
 
 const Topbar = () => {
   return (

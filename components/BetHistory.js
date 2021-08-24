@@ -88,9 +88,10 @@ const AllBets = ({ betData, title }) => {
         draggable
         pauseOnHover
       />
-      <h2 className={styles.tableTitle}>{title}</h2>
+
       <div className={styles.tableContainer}>
         <div className={styles.titleContainer}>
+          <h2 className={styles.tableTitle}>{title}</h2>
           <input
             onChange={(event) => {
               setSearchTerm(event.target.value);
@@ -163,11 +164,11 @@ const AllBets = ({ betData, title }) => {
                       netProfit(sport.wager_amt, sport.odds, sport.outcome)
                     )}
                   </td>
-                  <td className={styles.displayCenter}>
+                  <td className={`${styles.displayCenter} ${styles.iconEdit}`}>
                     <Create />
                   </td>
                   <td
-                    className={styles.displayCenter}
+                    className={`${styles.displayCenter} ${styles.iconDel}`}
                     onClick={() => deleteBet(index)}>
                     <Delete />
                   </td>

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import styles from "../styles/Sidebar.module.css";
-import SidebarItem from "./SidebarItem";
+import styles from '../styles/Sidebar.module.css';
+import SidebarItem from './SidebarItem';
 
 const Sidebar = () => {
   return (
@@ -11,7 +11,6 @@ const Sidebar = () => {
           src='/ab_21.png'
           alt='Action Backers Logo'
         />
-
         <SidebarItem />
       </div>
     </div>

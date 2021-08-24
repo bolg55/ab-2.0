@@ -35,7 +35,7 @@ const Chart = ({ title, data, dataKey, dataKeyX, userPrefs }) => {
         </button>
       </div>
 
-      <ResponsiveContainer aspect={3 / 1}>
+      <ResponsiveContainer aspect={4 / 1}>
         <AreaChart
           data={data}
           margin={{

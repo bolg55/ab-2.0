@@ -1,5 +1,13 @@
+/* Used for the 'Recent Bets Component' */
+.containerHome {
+  flex: 4;
+}
+
+/* Used for the allbets page */
+
 .container {
   flex: 4;
+  background: rgba(237, 237, 237, 0.75);
 }
 
 .tableContainer {
@@ -11,12 +19,15 @@
   -webkit-box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.75);
   border-radius: 0.25rem;
   background: #fff;
+  overflow-y: auto;
+  max-height: 80vh;
 }
 
 .titleContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
 .search {
@@ -35,8 +46,7 @@
 .tableTitle {
   color: rgba(85, 85, 85, 0.75);
   font-weight: 600;
-  margin: 1rem 1.25rem 0;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .tableTitleSm {
@@ -56,7 +66,6 @@
 }
 
 .allBetsTable {
-  width: 100%;
   border-spacing: 0.625rem;
 }
 
@@ -126,4 +135,14 @@ Styling the Results pill
 .icon {
   color: rgba(47, 42, 98, 0.75);
   margin-left: 0.25rem;
+}
+
+.iconDel {
+  color: rgb(226, 73, 73);
+  cursor: pointer;
+}
+
+.iconEdit {
+  color: rgb(54, 102, 236);
+  cursor: pointer;
 }

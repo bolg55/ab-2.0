@@ -56,92 +56,94 @@ const AddBet = ({ data, title }) => {
   return (
     <div className={styles.container}>
       <Topbar />
-      <h1 className={styles.tableTitle}>{title}</h1>
-      <ToastContainer
-        position='top-center'
-        autoClose={2000}
-        draggable
-        pauseOnHover
-      />
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.grid}>
-          <div>
-            <label htmlFor='date'>Date</label>
-            <input
-              type='date'
-              name='date'
-              id='date'
-              value={values.date}
-              onChange={handleInputChange}
-            />
+      <div className={styles.addBetWrapper}>
+        <ToastContainer
+          position='top-center'
+          autoClose={2000}
+          draggable
+          pauseOnHover
+        />
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <h1 className={styles.tableTitle}>{title}</h1>
+          <div className={styles.grid}>
+            <div>
+              <label htmlFor='date'>Date</label>
+              <input
+                type='date'
+                name='date'
+                id='date'
+                value={values.date}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <label htmlFor='sport'>League</label>
+              <input
+                type='text'
+                id='sport'
+                name='sport'
+                value={values.sport}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <label htmlFor='wager_type'>Bet Type</label>
+              <input
+                type='text'
+                id='wager_type'
+                name='wager_type'
+                value={values.wager_type}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <label htmlFor='wager_info'>Bet Info</label>
+              <input
+                type='text'
+                id='wager_info'
+                name='wager_info'
+                value={values.wager_info}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <label htmlFor='wager_amt'>Amount</label>
+              <input
+                type='number'
+                id='wager_amt'
+                name='wager_amt'
+                value={values.wager_amt}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <label htmlFor='odds'>Odds</label>
+              <input
+                type='number'
+                id='odds'
+                name='odds'
+                value={values.odds}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <label htmlFor='outcome'>Result</label>
+              <select
+                id='outcome'
+                name='outcome'
+                value={values.outcome}
+                onChange={handleInputChange}>
+                <option defaultValue>-- Select an Option --</option>
+                <option>pending</option>
+                <option>win</option>
+                <option>lose</option>
+                <option>push</option>
+              </select>
+            </div>
+            <input type='submit' value='Add Bet' />
           </div>
-          <div>
-            <label htmlFor='sport'>League</label>
-            <input
-              type='text'
-              id='sport'
-              name='sport'
-              value={values.sport}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label htmlFor='wager_type'>Bet Type</label>
-            <input
-              type='text'
-              id='wager_type'
-              name='wager_type'
-              value={values.wager_type}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label htmlFor='wager_info'>Bet Info</label>
-            <input
-              type='text'
-              id='wager_info'
-              name='wager_info'
-              value={values.wager_info}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label htmlFor='wager_amt'>Amount</label>
-            <input
-              type='number'
-              id='wager_amt'
-              name='wager_amt'
-              value={values.wager_amt}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label htmlFor='odds'>Odds</label>
-            <input
-              type='number'
-              id='odds'
-              name='odds'
-              value={values.odds}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label htmlFor='outcome'>Result</label>
-            <select
-              id='outcome'
-              name='outcome'
-              value={values.outcome}
-              onChange={handleInputChange}>
-              <option defaultValue>-- Select an Option --</option>
-              <option>pending</option>
-              <option>win</option>
-              <option>lose</option>
-              <option>push</option>
-            </select>
-          </div>
-        </div>
-        <input type='submit' value='Add Bet' />
-      </form>
+        </form>
+      </div>
       <PendingBets betData={data} title='Pending bets' />
     </div>
   );

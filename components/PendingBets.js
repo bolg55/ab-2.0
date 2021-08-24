@@ -51,9 +51,9 @@ const PendingBets = ({ betData, title }) => {
         draggable
         pauseOnHover
       />
-      <h2 className={styles.tableTitle}>{title}</h2>
+
       <div className={styles.tableContainer}>
-        <div className={styles.titleContainer}></div>
+        <h2 className={styles.tableTitle}>{title}</h2>
         <table className={styles.allBetsTable}>
           <tbody>
             <tr className={styles.allBetsRowHeader}>
@@ -91,11 +91,11 @@ const PendingBets = ({ betData, title }) => {
                     }`}>
                     {sport.outcome}
                   </td>
-                  <td className={styles.displayCenter}>
+                  <td className={`${styles.displayCenter} ${styles.iconEdit}`}>
                     <Create />
                   </td>
                   <td
-                    className={styles.displayCenter}
+                    className={`${styles.displayCenter} ${styles.iconDel}`}
                     onClick={() => deleteBet(index)}>
                     <Delete />
                   </td>

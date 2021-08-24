@@ -14,11 +14,11 @@ const SidebarItem = () => {
           <ul className={styles.sidebarList}>
             {item.listItem.map((item) => (
               <Link key={item.id} href={item.link}>
-                <a
-                  className={`${styles.sidebarListItem} ${
-                    router.pathname === item.link && ` ${styles.active}`
-                  }`}>
-                  <li>
+                <a>
+                  <li
+                    className={`${styles.sidebarListItem} ${
+                      router.pathname === item.link && ` ${styles.active}`
+                    }`}>
                     {item.listIcon}
                     {item.itemName}
                   </li>

@@ -19,7 +19,7 @@ const RecentBets = ({ data, title }) => {
     return formatted;
   };
   return (
-    <div className={styles.container}>
+    <div className={styles.containerHome}>
       <div className={styles.tableContainer}>
         <div className={styles.titleContainer}>
           <h3 className={styles.tableTitleSm}>{title}</h3>
