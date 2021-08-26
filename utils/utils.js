@@ -10,3 +10,22 @@ export const netProfit = (wager, odds, result) => {
   }
   return profit;
 };
+
+// Formats the Date column to Mmm dd, yyyy
+export const formatDateForInput = (date) => {
+  let options = {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  };
+  const formatted = new Date(date).toISOString('en-US', options).slice(0, 10);
+  return formatted;
+};
+
+// sets Amount and Net Profit fields to $ amounts
+export const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+});

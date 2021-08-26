@@ -79,6 +79,7 @@ const Model = () => {
       status: true,
       rowKey: id,
     });
+    console.log(id);
     setBetEditor(currentBetOutcome);
   };
 
@@ -113,10 +114,11 @@ const Model = () => {
             <th>Edit</th>
             <th>Delete</th>
             <th>Save</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {data.map((sport, index) => (
+          {data.map((sport) => (
             <tr key={sport.id} className={styles.allBetsTr}>
               <td>{formatDateForInput(`${sport.date}`)}</td>
               <td className={`${styles.displayCenter} ${styles.capitalize}`}>
@@ -143,6 +145,14 @@ const Model = () => {
                   netProfit(sport.wager_amt, sport.odds, sport.outcome)
                 )}
               </td>
+              {inEditMode.status && inEditMode.rowKey === sport.id ? (
+                <input
+                  value={betEditor}
+                  onChange={(event) => setBetEditor(event.target.value)}
+                />
+              ) : (
+                sport.outcome
+              )}
               <td>
                 {inEditMode.status && inEditMode.rowKey === sport.id ? (
                   <>

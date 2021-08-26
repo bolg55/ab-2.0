@@ -5,6 +5,7 @@ import styles from '../styles/AddBets.module.css';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { API_URL } from '../config';
+import { netProfit } from '../utils/utils';
 
 const AddBet = ({ data, title }) => {
   const [values, setValues] = useState({
@@ -15,6 +16,7 @@ const AddBet = ({ data, title }) => {
     wager_amt: '',
     odds: '',
     outcome: '',
+    net_profit: netProfit(data.wager_amt, data.odds, data.outcome),
   });
 
   const router = useRouter();
@@ -138,6 +140,12 @@ const AddBet = ({ data, title }) => {
                 <option>push</option>
               </select>
             </div>
+            <input
+              id='net_profit'
+              type='hidden'
+              value={values.net_profit}
+              onChange={handleInputChange}
+            />
             <input type='submit' value='Add Bet' />
           </div>
         </form>

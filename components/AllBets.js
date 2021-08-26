@@ -2,7 +2,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Topbar from './Topbar';
 import styles from '../styles/Bets.module.css';
-import { netProfit } from '../utils/utils';
+import { netProfit, formatDateForInput, formatter } from '../utils/utils';
 import { useState } from 'react';
 import { CSVLink } from 'react-csv';
 import { GetApp, Create, Delete } from '@material-ui/icons';
@@ -10,8 +10,10 @@ import { useRouter } from 'next/router';
 import { API_URL } from '../config';
 
 const AllBets = ({ betData, title }) => {
+  // ****************************** //
+  //         USESTATE HOOKS         //
+  // ****************************** //
   const [values, setValues] = useState({
-    id: '',
     date: '',
     sport: '',
     wager_type: '',
@@ -21,10 +23,56 @@ const AllBets = ({ betData, title }) => {
     outcome: '',
   });
 
+  // useState for search box query w/ map and filter data //
+  const [searchTerm, setSearchTerm] = useState('');
+
+  // useState to set edit mode on bet add / edit form //
+  const [editMode, setEditMode] = useState(false);
+
+  //  useState to toggle add / edit form on/off   //
+  const [showForm, setShowForm] = useState(false);
+
+  // NEXT ROUTER //
+  const router = useRouter();
+
+  //  Download bets as CSV functionality  //
+  const headers = [
+    { label: 'Date', key: 'date' },
+    { label: 'League', key: 'sport' },
+    { label: 'Bet Type', key: 'wager_type' },
+    { label: 'Bet Info', key: 'wager_info' },
+    { label: 'Amount', key: 'wager_amt' },
+    { label: 'Odds', key: 'odds' },
+    { label: 'Result', key: 'outcome' },
+  ];
+  const csvReport = {
+    filename: 'All Bets.csv',
+    headers: headers,
+    data: betData,
+  };
+  // ****************************** //
+
+  // CALCULATES NET PROFIT OF ALL BETS VERY IMPORTANT //
+  const netProfitCalc = () => {
+    let total = [];
+    for (let i = 0; i < betData.length; i++) {
+      total.push(
+        netProfit(betData[i].wager_amt, betData[i].odds, betData[i].outcome)
+      );
+    }
+    const netP = formatter.format(total.reduce((a, b) => a + b, 0));
+    return netP;
+  };
+  // ****************************** //
+  //         EVENT HANDLERS         //
+  // ****************************** //
+
+  // Handles edit bet functionality
+
   const handleEdit = async (index) => {
     const res = await fetch(`${API_URL}/bets/${betData[index].id}`);
-
     const data = await res.json();
+
     setValues({
       id: data.id,
       date: formatDateForInput(data.date),
@@ -37,6 +85,7 @@ const AllBets = ({ betData, title }) => {
     });
   };
 
+  // Handles form submit functionality
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -48,13 +97,17 @@ const AllBets = ({ betData, title }) => {
       toast.error('Please fill in all fields');
     }
 
-    const res = await fetch(`${API_URL}/bets/${values.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(values),
-    });
+    const res = await fetch(
+      `${API_URL}/bets/${editMode ? `${values.id}` : ''}`,
+      {
+        method: `${editMode ? 'PUT' : 'POST'}`,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      }
+    );
+
     if (!res.ok) {
       toast.error('Something Went Wrong');
     } else {
@@ -64,53 +117,11 @@ const AllBets = ({ betData, title }) => {
     }
   };
 
+  // Updates form fields on edit
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
-
-  const router = useRouter();
-
-  // useState for search box query w/ map and filter data
-  const [searchTerm, setSearchTerm] = useState('');
-
-  // sets Amount and Net Profit fields to $ amounts
-  let formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
-
-  // Formats the Date column to Mmm dd, yyyy
-  const formatDateForInput = (date) => {
-    let options = {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    };
-    const formatted = new Date(date).toISOString('en-US', options).slice(0, 10);
-    return formatted;
-  };
-
-  /*  Download bets as CSV functionality  */
-  const headers = [
-    { label: 'Date', key: 'date' },
-    { label: 'League', key: 'sport' },
-    { label: 'Bet Type', key: 'wager_type' },
-    { label: 'Bet Info', key: 'wager_info' },
-    { label: 'Amount', key: 'wager_amt' },
-    { label: 'Odds', key: 'odds' },
-    { label: 'Result', key: 'outcome' },
-    { label: 'Net Profit', key: 'profit' },
-  ];
-
-  const csvReport = {
-    filename: 'All Bets.csv',
-    headers: headers,
-    data: betData,
-  };
-  // ****************************** //
 
   const deleteBet = async (index) => {
     if (confirm('Are you sure?')) {
@@ -129,16 +140,18 @@ const AllBets = ({ betData, title }) => {
     }
   };
 
-  // CALCULATES NET PROFIT OF ALL BETS VERY IMPORTANT //
-  const netProfitCalc = () => {
-    let total = [];
-    for (let i = 0; i < betData.length; i++) {
-      total.push(
-        netProfit(betData[i].wager_amt, betData[i].odds, betData[i].outcome)
-      );
+  // onClick Edit Handler //
+
+  const handleEditClick = () => {
+    setShowForm(true);
+    setEditMode(true);
+  };
+
+  const handleAddClick = () => {
+    setEditMode(false);
+    if (!showForm) {
+      setShowForm(true);
     }
-    const netP = formatter.format(total.reduce((a, b) => a + b, 0));
-    return netP;
   };
 
   return (
@@ -150,28 +163,27 @@ const AllBets = ({ betData, title }) => {
         pauseOnHover
       />
       <Topbar />
-      <h3 className={styles.totalProfit}>
-        Total profit:
-        <span className={styles.totalProfitNum}>{netProfitCalc()}</span>
-      </h3>
-
-      <div className={styles.tableContainer}>
-        <div className={styles.titleContainer}>
-          <h2 className={styles.tableTitle}>{title}</h2>
-          <input
-            onChange={(event) => {
-              setSearchTerm(event.target.value);
-            }}
-            className={styles.search}
-            id='myInput'
-            type='text'
-            placeholder='Search by League, Bet Type, Bet Info, or Result...'
-          />
-          <CSVLink className={styles.csvDL} {...csvReport}>
-            Download as CSV <GetApp className={styles.icon} />
-          </CSVLink>
+      <div className={styles.topContainer}>
+        <h3>
+          Total profit:
+          <span className={styles.totalProfitNum}>{netProfitCalc()}</span>
+        </h3>
+        <div>
+          <button className={styles.btn} onClick={() => handleAddClick()}>
+            Add Bets
+          </button>
+          <button className={styles.btn} onClick={() => handleEditClick()}>
+            Edit Bets
+          </button>
         </div>
+      </div>
+
+      {/* Input form - Add / Edit */}
+      {showForm ? (
         <form onSubmit={handleSubmit} className={styles.form}>
+          <p onClick={() => setShowForm(false)}>
+            Close Form(this will be moved later)
+          </p>
           <div className={styles.grid}>
             <div>
               <label htmlFor='date'>Date</label>
@@ -247,9 +259,35 @@ const AllBets = ({ betData, title }) => {
                 <option>push</option>
               </select>
             </div>
-            <input type='submit' value='Edit Bet' />
+
+            <input
+              type='submit'
+              value={editMode ? 'Update Bet' : 'Add New Bet'}
+            />
           </div>
         </form>
+      ) : (
+        ''
+      )}
+
+      <div className={styles.tableContainer}>
+        <div className={styles.titleContainer}>
+          <h2 className={styles.tableTitle}>{title}</h2>
+          {/* Search Bar */}
+          <input
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }}
+            className={styles.search}
+            id='myInput'
+            type='text'
+            placeholder='Search by League, Bet Type, Bet Info, or Result...'
+          />
+          {/* Download CSV */}
+          <CSVLink className={styles.csvDL} {...csvReport}>
+            Download as CSV <GetApp className={styles.icon} />
+          </CSVLink>
+        </div>
 
         <table className={styles.allBetsTable}>
           <tbody>
@@ -266,7 +304,8 @@ const AllBets = ({ betData, title }) => {
               <th className={`${styles.allBetsTh} ${styles.displayRight}`}>
                 Net Profit
               </th>
-              <th>Edit</th>
+              {editMode ? <th>Edit</th> : ''}
+
               <th>Delete</th>
             </tr>
 
@@ -289,48 +328,59 @@ const AllBets = ({ betData, title }) => {
                   return val;
                 }
               })
-              .map((sport, index) => (
-                <tr key={sport.id} className={styles.allBetsTr}>
-                  <td>{formatDateForInput(`${sport.date}`)}</td>
-                  <td
-                    className={`${styles.displayCenter} ${styles.capitalize}`}>
-                    {sport.sport}
-                  </td>
-                  <td
-                    className={`${styles.displayCenter} ${styles.capitalize}`}>
-                    {sport.wager_type}
-                  </td>
-                  <td
-                    className={`${styles.displayCenter} ${styles.capitalize}`}>
-                    {sport.wager_info}
-                  </td>
-                  <td className={styles.displayCenter}>
-                    {formatter.format(`${sport.wager_amt}`)}
-                  </td>
-                  <td className={styles.displayCenter}>{sport.odds}</td>
-                  <td
-                    className={`${styles[`${sport.outcome}`]} ${
-                      styles.outcome
-                    } ${styles.capitalize}`}>
-                    {sport.outcome}
-                  </td>
-                  <td className={styles.displayRight}>
-                    {formatter.format(
-                      netProfit(sport.wager_amt, sport.odds, sport.outcome)
+              .map((sport, index) => {
+                const profit = netProfit(
+                  sport.wager_amt,
+                  sport.odds,
+                  sport.outcome
+                );
+
+                return (
+                  <tr key={sport.id} className={styles.allBetsTr}>
+                    <td>{formatDateForInput(`${sport.date}`)}</td>
+                    <td
+                      className={`${styles.displayCenter} ${styles.capitalize}`}>
+                      {sport.sport}
+                    </td>
+                    <td
+                      className={`${styles.displayCenter} ${styles.capitalize}`}>
+                      {sport.wager_type}
+                    </td>
+                    <td
+                      className={`${styles.displayCenter} ${styles.capitalize}`}>
+                      {sport.wager_info}
+                    </td>
+                    <td className={styles.displayCenter}>
+                      {formatter.format(`${sport.wager_amt}`)}
+                    </td>
+                    <td className={styles.displayCenter}>{sport.odds}</td>
+                    <td
+                      className={`${styles[`${sport.outcome}`]} ${
+                        styles.outcome
+                      } ${styles.capitalize}`}>
+                      {sport.outcome}
+                    </td>
+                    <td className={styles.displayRight}>
+                      {formatter.format(profit)}
+                    </td>
+                    {editMode ? (
+                      <td
+                        className={`${styles.displayCenter} ${styles.iconEdit}`}
+                        onClick={() => handleEdit(index)}>
+                        <Create />
+                      </td>
+                    ) : (
+                      ''
                     )}
-                  </td>
-                  <td
-                    className={`${styles.displayCenter} ${styles.iconEdit}`}
-                    onClick={() => handleEdit(index)}>
-                    <Create />
-                  </td>
-                  <td
-                    className={`${styles.displayCenter} ${styles.iconDel}`}
-                    onClick={() => deleteBet(index)}>
-                    <Delete />
-                  </td>
-                </tr>
-              ))}
+
+                    <td
+                      className={`${styles.displayCenter} ${styles.iconDel}`}
+                      onClick={() => deleteBet(index)}>
+                      <Delete />
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
