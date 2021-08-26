@@ -152,8 +152,7 @@ Styling the Results pill
 
 .topContainer {
   display: flex;
-  margin: 1rem 2.25rem;
-  padding-right: 1.25rem;
+  margin: 1rem 1.25rem;
   justify-content: space-between;
   color: #555;
   align-items: center;
@@ -249,4 +248,13 @@ Styling the Results pill
   border: 2px dashed red;
   background: #fff;
   color: rgb(54, 102, 236);
+}
+
+.closeForm {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #555;
+  cursor: pointer;
+  transform: translateY(-0.5rem);
 }

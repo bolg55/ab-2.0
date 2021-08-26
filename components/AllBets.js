@@ -5,7 +5,7 @@ import styles from '../styles/Bets.module.css';
 import { netProfit, formatDateForInput, formatter } from '../utils/utils';
 import { useState } from 'react';
 import { CSVLink } from 'react-csv';
-import { GetApp, Create, Delete } from '@material-ui/icons';
+import { GetApp, Create, Delete, Close } from '@material-ui/icons';
 import { useRouter } from 'next/router';
 import { API_URL } from '../config';
 
@@ -140,7 +140,7 @@ const AllBets = ({ betData, title }) => {
     }
   };
 
-  // onClick Edit Handler //
+  // onClick Edit / Add / Form Dropdown Handler //
 
   const handleEditClick = () => {
     setShowForm(true);
@@ -152,6 +152,11 @@ const AllBets = ({ betData, title }) => {
     if (!showForm) {
       setShowForm(true);
     }
+  };
+
+  const handleFormClose = () => {
+    setShowForm(false);
+    setEditMode(false);
   };
 
   return (
@@ -178,12 +183,11 @@ const AllBets = ({ betData, title }) => {
         </div>
       </div>
 
-      {/* Input form - Add / Edit */}
       {showForm ? (
         <form onSubmit={handleSubmit} className={styles.form}>
-          <p onClick={() => setShowForm(false)}>
-            Close Form(this will be moved later)
-          </p>
+          <span className={styles.closeForm} onClick={() => handleFormClose()}>
+            Close &#10060;
+          </span>
           <div className={styles.grid}>
             <div>
               <label htmlFor='date'>Date</label>
@@ -273,7 +277,7 @@ const AllBets = ({ betData, title }) => {
       <div className={styles.tableContainer}>
         <div className={styles.titleContainer}>
           <h2 className={styles.tableTitle}>{title}</h2>
-          {/* Search Bar */}
+
           <input
             onChange={(event) => {
               setSearchTerm(event.target.value);
@@ -283,7 +287,7 @@ const AllBets = ({ betData, title }) => {
             type='text'
             placeholder='Search by League, Bet Type, Bet Info, or Result...'
           />
-          {/* Download CSV */}
+
           <CSVLink className={styles.csvDL} {...csvReport}>
             Download as CSV <GetApp className={styles.icon} />
           </CSVLink>
@@ -304,7 +308,7 @@ const AllBets = ({ betData, title }) => {
               <th className={`${styles.allBetsTh} ${styles.displayRight}`}>
                 Net Profit
               </th>
-              {editMode ? <th>Edit</th> : ''}
+              {editMode ? <th>Edit</th> : null}
 
               <th>Delete</th>
             </tr>
@@ -369,9 +373,7 @@ const AllBets = ({ betData, title }) => {
                         onClick={() => handleEdit(index)}>
                         <Create />
                       </td>
-                    ) : (
-                      ''
-                    )}
+                    ) : null}
 
                     <td
                       className={`${styles.displayCenter} ${styles.iconDel}`}
