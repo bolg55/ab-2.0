@@ -141,7 +141,7 @@ Styling the Results pill
 }
 
 .iconDel {
-  color: rgb(226, 73, 73);
+  /* color: rgb(226, 73, 73); */
   cursor: pointer;
 }
 
@@ -234,27 +234,46 @@ Styling the Results pill
 }
 
 .btn {
-  border-color: rgb(54, 102, 236);
+  border: 2px solid rgb(54, 102, 236);
   border-radius: 0.25rem;
   padding: 0.35rem 0.5rem;
   background: rgb(54, 102, 236);
   color: #fff;
   margin: 0 0.25rem;
+  margin-left: 1rem;
   cursor: pointer;
   transition: all 0.4s ease;
 }
 
 .btn:hover {
-  border: 2px dashed red;
+  border: 2px solid rgb(54, 102, 236);
   background: #fff;
   color: rgb(54, 102, 236);
+}
+
+.closeFormContainer {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .closeForm {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   color: #555;
   cursor: pointer;
   transform: translateY(-0.5rem);
+}
+
+.addEditContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btnIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.25rem;
 }

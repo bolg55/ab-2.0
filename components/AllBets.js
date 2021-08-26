@@ -67,6 +67,19 @@ const AllBets = ({ betData, title }) => {
   //         EVENT HANDLERS         //
   // ****************************** //
 
+  // Resets the form fields after edit/add change or submit
+  const clearValues = () => {
+    setValues({
+      date: '',
+      sport: '',
+      wager_type: '',
+      wager_info: '',
+      wager_amt: '',
+      odds: '',
+      outcome: '',
+    });
+  };
+
   // Handles edit bet functionality
 
   const handleEdit = async (index) => {
@@ -112,6 +125,7 @@ const AllBets = ({ betData, title }) => {
       toast.error('Something Went Wrong');
     } else {
       // const data = await res.json();
+      clearValues();
       router.push(`/allbets`);
       toast.success('🚀 Bet updated successfully!');
     }
@@ -124,7 +138,7 @@ const AllBets = ({ betData, title }) => {
   };
 
   const deleteBet = async (index) => {
-    if (confirm('Are you sure?')) {
+    if (confirm('Are you sure? ')) {
       const res = await fetch(`${API_URL}/bets/${betData[index].id}`, {
         method: 'DELETE',
       });
@@ -143,18 +157,21 @@ const AllBets = ({ betData, title }) => {
   // onClick Edit / Add / Form Dropdown Handler //
 
   const handleEditClick = () => {
+    clearValues();
     setShowForm(true);
     setEditMode(true);
   };
 
   const handleAddClick = () => {
     setEditMode(false);
+    clearValues();
     if (!showForm) {
       setShowForm(true);
     }
   };
 
   const handleFormClose = () => {
+    clearValues();
     setShowForm(false);
     setEditMode(false);
   };
@@ -173,21 +190,26 @@ const AllBets = ({ betData, title }) => {
           Total profit:
           <span className={styles.totalProfitNum}>{netProfitCalc()}</span>
         </h3>
-        <div>
-          <button className={styles.btn} onClick={() => handleAddClick()}>
+        <div className={styles.addEditContainer}>
+          <div onClick={() => handleEditClick()}>
+            <Create className={styles.btnIcon} /> Edit Bets
+          </div>
+          <div className={styles.btn} onClick={() => handleAddClick()}>
             Add Bets
-          </button>
-          <button className={styles.btn} onClick={() => handleEditClick()}>
-            Edit Bets
-          </button>
+          </div>
         </div>
       </div>
 
       {showForm ? (
         <form onSubmit={handleSubmit} className={styles.form}>
-          <span className={styles.closeForm} onClick={() => handleFormClose()}>
-            Close &#10060;
-          </span>
+          <div className={styles.closeFormContainer}>
+            <span
+              className={styles.closeForm}
+              onClick={() => handleFormClose()}>
+              Close &#10060;
+            </span>
+          </div>
+
           <div className={styles.grid}>
             <div>
               <label htmlFor='date'>Date</label>
