@@ -1,11 +1,11 @@
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Dashboard.module.css';
 import FeaturedInfo from './FeaturedInfo';
 import Topbar from './Topbar';
 import Chart from './Chart';
 import RecentBets from './RecentBets';
 import { sportData, userSports } from '../constants/dummydata';
 
-const Home = ({ data }) => {
+const Dashboard = ({ recentBets, allBets }) => {
   let userName = 'notHotdog';
   const logins = 1;
 
@@ -17,7 +17,7 @@ const Home = ({ data }) => {
         <span className={styles.userName}>{userName}</span>
       </h3>
       <div>
-        <FeaturedInfo />
+        <FeaturedInfo allBets={allBets} />
       </div>
 
       <Chart
@@ -28,10 +28,10 @@ const Home = ({ data }) => {
         dataKey='overall'
       />
       <div className={styles.widgetContainer}>
-        <RecentBets data={data} title='Recent bets' />
+        <RecentBets recentBets={recentBets} title='Recent bets' />
       </div>
     </div>
   );
 };
 
-export default Home;
+export default Dashboard;

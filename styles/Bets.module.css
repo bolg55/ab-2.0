@@ -1,13 +1,12 @@
-/* Used for the 'Recent Bets Component' */
-.containerHome {
-  flex: 4;
-}
-
 /* Used for the allbets page */
 
 .container {
   flex: 4;
-  background: rgba(237, 237, 237, 0.75);
+}
+
+/* Used for the 'Recent Bets Component' */
+.containerHome {
+  flex: 4;
 }
 
 .tableContainer {
@@ -122,6 +121,9 @@ Styling the Results pill
 .displayCenter {
   text-align: center;
 }
+.capitalize {
+  text-transform: capitalize;
+}
 
 .csvDL {
   display: flex;
@@ -145,4 +147,16 @@ Styling the Results pill
 .iconEdit {
   color: rgb(54, 102, 236);
   cursor: pointer;
+}
+
+.totalProfit {
+  display: flex;
+  margin: 1rem 2.25rem;
+  padding-right: 1.25rem;
+  justify-content: flex-end;
+  color: #555;
+}
+
+.totalProfitNum {
+  margin-left: 1rem;
 }

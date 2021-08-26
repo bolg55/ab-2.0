@@ -1,7 +1,7 @@
 import styles from '../styles/Bets.module.css';
 import Link from 'next/link';
 
-const RecentBets = ({ data, title }) => {
+const RecentBets = ({ recentBets, title }) => {
   let formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -18,6 +18,21 @@ const RecentBets = ({ data, title }) => {
     const formatted = new Date(date).toLocaleDateString('en-US', options);
     return formatted;
   };
+
+  /*   function to calculate net profit of each wager   */
+
+  const netProfit = (wager, odds, result) => {
+    let profit = 0;
+    if (result === 'lose') {
+      profit = wager * -1;
+    } else if (result === 'win') {
+      profit = wager * odds - wager;
+    } else {
+      return profit;
+    }
+    return profit;
+  };
+
   return (
     <div className={styles.containerHome}>
       <div className={styles.tableContainer}>
@@ -43,7 +58,7 @@ const RecentBets = ({ data, title }) => {
                 Net Profit
               </th>
             </tr>
-            {data.map((sport) => (
+            {recentBets.map((sport) => (
               <tr key={sport.id} className={styles.allBetsTr}>
                 <td>{formatDateForInput(`${sport.date}`)}</td>
                 <td className={styles.displayCenter}>{sport.sport}</td>
@@ -59,13 +74,7 @@ const RecentBets = ({ data, title }) => {
                 </td>
                 <td className={styles.displayRight}>
                   {formatter.format(
-                    `${
-                      `${sport.outcome}` === 'lose'
-                        ? sport.wager_amt * -1
-                        : `${sport.outcome}` === 'win'
-                        ? sport.odds * sport.wager_amt - sport.wager_amt
-                        : 0
-                    }`
+                    netProfit(sport.wager_amt, sport.odds, sport.outcome)
                   )}
                 </td>
               </tr>

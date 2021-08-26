@@ -57,6 +57,9 @@
 .displayCenter {
   text-align: center;
 }
+.capitalize {
+  text-transform: capitalize;
+}
 
 .iconDel {
   color: rgb(226, 73, 73);

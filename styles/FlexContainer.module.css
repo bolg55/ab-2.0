@@ -1,0 +1,7 @@
+/* Outer Container for all dashboard pages 
+(addbets, allbets, editbets, dashboard etc) */
+
+.container {
+  display: flex;
+  background: rgba(237, 237, 237, 0.75);
+}

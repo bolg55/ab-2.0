@@ -1,6 +1,6 @@
 import {
   LineStyle,
-  AttachMoney,
+  Create,
   Timeline,
   List,
   SportsFootball,
@@ -26,15 +26,21 @@ export const dashboardItems = [
       },
       {
         id: 2,
+        link: '/allbets',
+        itemName: 'All Bets',
+        listIcon: <List className={styles.icon} />,
+      },
+      {
+        id: 3,
         link: '/addbets',
         itemName: 'Add New Bet',
         listIcon: <Timeline className={styles.icon} />,
       },
       {
-        id: 3,
-        link: '/allbets',
-        itemName: 'All Bets',
-        listIcon: <List className={styles.icon} />,
+        id: 4,
+        link: '/editbets',
+        itemName: 'Edit/Grade Pending Bets',
+        listIcon: <Create className={styles.icon} />,
       },
     ],
   },

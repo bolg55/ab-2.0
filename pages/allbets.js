@@ -1,4 +1,4 @@
-import styles from '../styles/Dashboard.module.css';
+import styles from '../styles/FlexContainer.module.css';
 import Layout from '../components/Layout';
 import Sidebar from '../components/Sidebar';
 import AllBets from '../components/AllBets';
@@ -7,10 +7,10 @@ import axios from 'axios';
 
 const allbets = ({ betData }) => {
   return (
-    <Layout currentURL='http://localhost:3000/models'>
+    <Layout currentURL='http://localhost:3000/allbets'>
       <div className={styles.container}>
         <Sidebar />
-        <AllBets betData={betData} />
+        <AllBets betData={betData} title='All bets' />
       </div>
     </Layout>
   );

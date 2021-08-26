@@ -1,16 +1,16 @@
 import styles from '../styles/FlexContainer.module.css';
 import Layout from '../components/Layout';
 import Sidebar from '../components/Sidebar';
-import AddBets from '../components/AddBets';
+import EditBets from '../components/EditBets';
 import { API_URL } from '../config';
 import axios from 'axios';
 
-const addbets = ({ data }) => {
+const editbets = ({ data }) => {
   return (
-    <Layout currentURL='http://localhost:3000/addbets'>
+    <Layout currentURL='http://localhost:3000/editbets'>
       <div className={styles.container}>
         <Sidebar />
-        <AddBets data={data} title='Add bet' />
+        <EditBets data={data} title='Edit bet' />
       </div>
     </Layout>
   );
@@ -25,4 +25,4 @@ export const getServerSideProps = async () => {
   };
 };
 
-export default addbets;
+export default editbets;

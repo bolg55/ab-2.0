@@ -66,7 +66,6 @@ const PendingBets = ({ betData, title }) => {
               <th className={styles.allBetsTh}>Amount</th>
               <th className={styles.allBetsTh}>Odds</th>
               <th className={styles.allBetsTh}>Result</th>
-
               <th>Edit</th>
               <th>Delete</th>
             </tr>
@@ -78,9 +77,18 @@ const PendingBets = ({ betData, title }) => {
               .map((sport, index) => (
                 <tr key={sport.id} className={styles.allBetsTr}>
                   <td>{formatDateForInput(`${sport.date}`)}</td>
-                  <td className={styles.displayCenter}>{sport.sport}</td>
-                  <td className={styles.displayCenter}>{sport.wager_type}</td>
-                  <td className={styles.displayCenter}>{sport.wager_info}</td>
+                  <td
+                    className={`${styles.displayCenter} ${styles.capitalize}`}>
+                    {sport.sport}
+                  </td>
+                  <td
+                    className={`${styles.displayCenter} ${styles.capitalize}`}>
+                    {sport.wager_type}
+                  </td>
+                  <td
+                    className={`${styles.displayCenter} ${styles.capitalize}`}>
+                    {sport.wager_info}
+                  </td>
                   <td className={styles.displayCenter}>
                     {formatter.format(`${sport.wager_amt}`)}
                   </td>
@@ -88,10 +96,12 @@ const PendingBets = ({ betData, title }) => {
                   <td
                     className={`${styles[`${sport.outcome}`]} ${
                       styles.outcome
-                    }`}>
+                    } ${styles.capitalize}`}>
                     {sport.outcome}
                   </td>
-                  <td className={`${styles.displayCenter} ${styles.iconEdit}`}>
+                  <td
+                    className={`${styles.displayCenter} ${styles.iconEdit}`}
+                    onClick={() => editBet(index)}>
                     <Create />
                   </td>
                   <td

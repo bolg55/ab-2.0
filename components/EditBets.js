@@ -1,12 +1,13 @@
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Topbar from './Topbar';
-import styles from '../styles/AddBets.module.css';
+import PendingBets from '../components/PendingBets';
+import styles from '../styles/EditBets.module.css';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { API_URL } from '../config';
 
-const AddBet = ({ data, title }) => {
+const EditBets = ({ data, title }) => {
   const [values, setValues] = useState({
     date: '',
     sport: '',
@@ -138,12 +139,13 @@ const AddBet = ({ data, title }) => {
                 <option>push</option>
               </select>
             </div>
-            <input type='submit' value='Add Bet' />
+            <input type='submit' value='Edit Bet' />
           </div>
         </form>
       </div>
+      <PendingBets betData={data} title='Pending bets' />
     </div>
   );
 };
 
-export default AddBet;
+export default EditBets;

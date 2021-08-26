@@ -1,4 +1,4 @@
-import styles from '../styles/Dashboard.module.css';
+import styles from '../styles/FlexContainer.module.css';
 import Layout from '../components/Layout';
 import Sidebar from '../components/Sidebar';
 import Model from '../components/Model';
